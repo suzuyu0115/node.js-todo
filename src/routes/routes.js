@@ -1,24 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send('タスクを全取得');
-});
+const {
+  getAllTasks,
+  createTask,
+  getSingleTask,
+  updateTask,
+  deleteTask,
+} = require('../controllers/tasksControllers');
 
-router.post('/', (req, res) => {
-  res.send('タスクを投稿');
-});
-
-router.get('/:id', (req, res) => {
-  res.send('1つのタスクを取得');
-});
-
-router.patch('/:id', (req, res) => {
-  res.send('1つのタスクを更新');
-});
-
-router.delete('/:id', (req, res) => {
-  res.send('1つのタスクを削除');
-});
+router.get('/', getAllTasks);
+router.post('/', createTask);
+router.get('/:id', getSingleTask);
+router.patch('/:id', updateTask);
+router.delete('/:id', deleteTask);
 
 module.exports = router;
