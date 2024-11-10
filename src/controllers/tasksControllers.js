@@ -40,8 +40,13 @@ const updateTask = async (req, res) => {
   }
 }
 
-const deleteTask = (req, res) => {
-  res.send('1つのタスクを削除');
+const deleteTask = async (req, res) => {
+  try {
+    const deleteTask = await Task.findByIdAndDelete(req.params.id);
+    res.status(200).json(deleteTask);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 }
 
 module.exports = {
