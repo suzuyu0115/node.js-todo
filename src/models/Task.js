@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
 
-const Task = new Schema({
+const TaskSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'タイトルが未入力です'],
@@ -13,4 +12,4 @@ const Task = new Schema({
   },
 });
 
-module.exports = Task;
+module.exports = mongoose.model("Task", TaskSchema);

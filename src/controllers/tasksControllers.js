@@ -1,9 +1,16 @@
+const Task = require('../models/Task');
+
 const getAllTasks = (req, res) => {
   res.send('タスクを全取得');
 }
 
-const createTask = (req, res) => {
-  res.send('タスクを投稿');
+const createTask = async (req, res) => {
+  try {
+    await Task.create(req.body);
+    res.status(200).json(createTask);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 }
 
 const getSingleTask = (req, res) => {

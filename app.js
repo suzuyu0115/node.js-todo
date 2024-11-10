@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");require("dotenv").config();
 
 const PORT = 8080;
+app.use(express.json());
 
 const start = async () => {
   try {
