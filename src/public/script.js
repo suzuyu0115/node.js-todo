@@ -1,6 +1,7 @@
 const tasksDOM = document.querySelector('.tasks');
 const formDOM = document.querySelector('.task-form');
 const taskInputDOM = document.querySelector('.task-form-input');
+const taskDeleteDOM = document.querySelector('.delete-btn');
 
 const showTasks = async () => {
   try {
@@ -12,7 +13,7 @@ const showTasks = async () => {
         <div class="task">
           <p>${task.title}</p>
           <a href="#">編集</a>
-          <button>削除</button>
+          <button class="delete-btn" data-id="${task._id}">削除</button>
         </div>
       `;
     }).join("");
@@ -33,5 +34,19 @@ formDOM.addEventListener('submit', async (e) => {
     taskInputDOM.value = "";
   } catch (err) {
     console.log(err);
+  }
+});
+
+// タスクを削除する
+tasksDOM.addEventListener("click", async (event) => {
+  const element = event.target;
+  if (element.classList.contains("delete-btn")) {
+    const id = element.dataset.id;
+    showTasks();
+    try {
+      await axios.delete(`/api/v1/tasks/${id}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 });
