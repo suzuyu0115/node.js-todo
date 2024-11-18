@@ -12,6 +12,7 @@ const showTasks = async () => {
       return `
         <div class="task">
           <p>${task.title}</p>
+          <p>${task.completed}</p>
           <a href="#">編集</a>
           <button class="delete-btn" data-id="${task._id}">削除</button>
         </div>
